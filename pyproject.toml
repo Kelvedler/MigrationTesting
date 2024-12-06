@@ -1,0 +1,50 @@
+[project]
+name = "MigrationTesting"
+version = "0.1.0"
+description = "FastAPI project to implement migration testing github action"
+authors = [
+    {name = "", email = ""},
+]
+dependencies = [
+  "fastapi>=0.115.5",
+  "uvicorn>=0.32.1",
+  "alembic>=1.14.0",
+  "pymysql[rsa]>=1.1.1",
+  "sqlalchemy>=2.0.36",
+  "pydantic-settings>=2.6.1"
+]
+
+requires-python = "==3.9.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[[tool.mypy.overrides]]
+module = [
+  "database.*",
+  "decorators",
+  "loggers",
+  "settings",
+  "utils",
+]
+ignore_missing_imports = true
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+db_start = "docker compose -f docker-compose-local.yml -p migration-testing up -d"
+db_stop = "docker compose -f docker-compose-local.yml -p migration-testing down"
+cov_test = "coverage run -m pytest"
+[dependency-groups]
+lint = [
+    "black>=24.10.0",
+]
+test = [
+    "pytest>=8.3.4",
+    "testcontainers[mysql]>=4.8.2",
+    "pytest-cov>=6.0.0",
+]
+
+

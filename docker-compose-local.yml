@@ -1,0 +1,21 @@
+services:
+  database:
+    image: mysql:8.0.35
+    environment:
+      MYSQL_USER: "local_user"
+      MYSQL_PASSWORD: "local_pass"
+      MYSQL_DATABASE: "local_db"
+      MYSQL_ROOT_PASSWORD: "local_pass"
+    ports:
+      - "3306:3306"
+    volumes:
+      - migration_testing_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - migration_testing_net
+
+volumes:
+  migration_testing_data:
+
+networks:
+  migration_testing_net:
