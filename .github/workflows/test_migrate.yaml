@@ -1,0 +1,36 @@
+name: Test Migrations
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/database/migrations/versions/**'
+  workflow_dispatch:
+
+jobs:
+  test_migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Merge main
+        run: |
+          git pull origin main
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@v3
+        with:
+          python-version: "3.9"
+          cache: "true"
+
+      - name: Install dependencies
+        run: pdm install
+
+      - name: Run tests with coverage
+        run: pdm run cov_test
