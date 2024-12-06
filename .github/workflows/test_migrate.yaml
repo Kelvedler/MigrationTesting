@@ -16,7 +16,8 @@ jobs:
 
       - name: Merge main
         run: |
-          git merge --no-ff origin main
+          git config pull.rebase false
+          git pull origin main
 
       - name: Set up Python
         uses: actions/setup-python@v4
