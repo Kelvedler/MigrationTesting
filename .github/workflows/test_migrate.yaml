@@ -16,7 +16,7 @@ jobs:
 
       - name: Merge main
         run: |
-          git config pull.rebase false
+          git config pull.rebase true
           git pull origin main
 
       - name: Set up Python
