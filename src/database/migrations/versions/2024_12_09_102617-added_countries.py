@@ -1,7 +1,7 @@
 """Added countries
 
 Revision ID: 9eccdf8a5dc0
-Revises: b15d1e0c2324
+Revises: 2c6c664833fb
 Create Date: 2024-12-09 10:26:17.934123+00:00
 
 """
@@ -14,7 +14,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = "9eccdf8a5dc0"
-down_revision: Union[str, None] = "b15d1e0c2324"
+down_revision: Union[str, None] = "2c6c664833fb"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
